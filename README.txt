@@ -87,6 +87,38 @@ void loop(){
 }
 
 
+//เฉลย workshop 5
+
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27,16,2);
+
+int echoPin =12;
+int trigPin  = 13;
+
+float duration, distance;
+void setup() {
+  Serial.begin (9600);
+  lcd.begin(16,2);
+  lcd.backlight();
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+}
+
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+
+  distance = duration / 58.2;
+  lcd.print(distance);
+  lcd.print(" cm");
+  delay(1000);
+  lcd.clear();
+  delay(100);
+}
 
 
 
