@@ -9,7 +9,7 @@ void setup(){
   }
 
 void loop(){
-  lcd.setCursor(5,0); //ทำให้ไฟวิ่ง
+  lcd.setCursor(5,0);
   lcd.print("Hello");
   delay(1000);
   lcd.clear();
