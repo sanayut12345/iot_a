@@ -149,7 +149,6 @@ void loop()
 
 
 //blynk dht
-//blynk dht
 #define BLYNK_PRINT Serial
 #include <ESP8266WiFi.h>
 #include <BlynkSimpleEsp8266.h>
@@ -161,12 +160,12 @@ DHT dht(DHTPIN,DHTTYPE);
 
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
-char auth[] = "VH6aAHhdP0RYp4QkHEBc7EZTJxzxGLnQ";
+char auth[] = "";
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "hotspot1";
-char pass[] = "12345678";
+char ssid[] = "";
+char pass[] = "";
 
 void setup()
 {
@@ -186,7 +185,6 @@ void loop()
 {
   float humidity = dht.readHumidity(); // ดึงค่าความชื้น
   float temperature = dht.readTemperature(); // ดึงค่าอุณหภูมิ
-  Serial.print(dht.getStatusString());
   Serial.print("\t");
   Serial.print(humidity, 1);
   Serial.print("\t\t");
