@@ -188,9 +188,7 @@ void loop()
   Serial.print("\t");
   Serial.print(humidity, 1);
   Serial.print("\t\t");
-  Serial.print(temperature, 1);
-  Serial.print("\t\t");
-  Serial.println(dht.toFahrenheit(temperature), 1);
+  Serial.println(temperature, 1);
   Blynk.run();
   Blynk.virtualWrite(V0, temperature);
   Blynk.virtualWrite(V1, humidity);
