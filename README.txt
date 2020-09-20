@@ -149,20 +149,24 @@ void loop()
 
 
 //blynk dht
+//blynk dht
 #define BLYNK_PRINT Serial
 #include <ESP8266WiFi.h>
 #include <BlynkSimpleEsp8266.h>
 #include "DHT.h"
-DHT dht;
+#define DHTPIN D5
+#define DHTTYPE DHT11
+float h,t;
+DHT dht(DHTPIN,DHTTYPE);
 
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
-char auth[] = "รหัส Token จาก email";
+char auth[] = "VH6aAHhdP0RYp4QkHEBc7EZTJxzxGLnQ";
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "ชื่อ wifi ที่จะเชื่อมต่อ";
-char pass[] = "รหัส wifi";
+char ssid[] = "hotspot1";
+char pass[] = "12345678";
 
 void setup()
 {
@@ -175,14 +179,13 @@ void setup()
   //Blynk.begin(auth, ssid, pass, IPAddress(192,168,1,100), 8080);
   Serial.println();
   Serial.println("Status\tHumidity (%)\tTemperature (C)\t(F)");
-  dht.setup(2); // data pin 2
+  dht.begin(); // data pin 2
 }
 
 void loop()
 {
-  delay(dht.getMinimumSamplingPeriod());
-  float humidity = dht.getHumidity(); // ดึงค่าความชื้น
-  float temperature = dht.getTemperature(); // ดึงค่าอุณหภูมิ
+  float humidity = dht.readHumidity(); // ดึงค่าความชื้น
+  float temperature = dht.readTemperature(); // ดึงค่าอุณหภูมิ
   Serial.print(dht.getStatusString());
   Serial.print("\t");
   Serial.print(humidity, 1);
@@ -191,9 +194,9 @@ void loop()
   Serial.print("\t\t");
   Serial.println(dht.toFahrenheit(temperature), 1);
   Blynk.run();
-  delay(100);
   Blynk.virtualWrite(V0, temperature);
   Blynk.virtualWrite(V1, humidity);
+  delay(100);
 
 }
 
