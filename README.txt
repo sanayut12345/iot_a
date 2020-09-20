@@ -33,8 +33,8 @@ void loop(){
 //workshop4
 
 //###Ultrasonic####
-#define echoPin 3
-#define trigPin 2
+int echoPin =  3;
+int trigPin = 2;
 
 float duration, distance;
 void setup() {
